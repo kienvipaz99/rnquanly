@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
 
   img: {
-    height: sizes.height * 0.052,
+    height: (sizes.width * 0.36) / 4,
     width: sizes.width * 0.36,
     position: 'absolute',
     alignSelf: 'center',

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import ButtomCusTom from '../../components/buttom/ButtomCusTom';
 import Header from '../../components/Header';
 import TextInPut from '../../components/text-input/TextInPut';
@@ -49,7 +48,6 @@ export default function Login() {
               <Image source={images.fingerprint} style={styles.img} />
             </Pressable>
           </View>
-          <AntDesign name="rightcircle" color={colors.browse} size={30} />
         </View>
       </View>
     </View>
