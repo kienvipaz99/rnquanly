@@ -1,8 +1,7 @@
 export const fonts = {
-  bold: 'GoogleSans-Bold',
-  intalic: 'GoogleSans-Italic',
-  boldItalic: 'GoogleSans-BoldItalic',
-  medium: 'GoogleSans-Medium',
-  mediumItalic: 'GoogleSans-MediumItalic',
-  regular: 'GoogleSans-Regular',
+  bold: 'FSPFBeauSansPro-Bold',
+  intalic: 'FSPFBeauSansPro-BlackItalic',
+  medium: 'FSPFBeauSansPro-Light',
+  mediumItalic: 'FSPFBeauSansPro-Italic',
+  regular: 'FSPFBeauSansPro-Regular',
 };

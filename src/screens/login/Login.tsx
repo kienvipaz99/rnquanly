@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import ButtomCusTom from '../../components/buttom/ButtomCusTom';
 import Header from '../../components/Header';
 import TextInPut from '../../components/text-input/TextInPut';
 import {colors} from '../../res/colors';
 import {fonts} from '../../res/fonts';
+import images from '../../res/images';
 import sizes from '../../res/sizes';
 import {StyleApp} from '../../res/styles';
 
@@ -33,8 +36,20 @@ export default function Login() {
             secureTextEntry
           />
           <View style={StyleApp.viewfogotlogin}>
-            <Text>Quên mật khẩu</Text>
+            <Text style={styles.txt}>Đổi mật khẩu</Text>
+            <Text style={styles.txt}>Quên mật khẩu</Text>
           </View>
+          <ButtomCusTom txtButton="Đăng nhập" />
+
+          <View style={styles.viewUtilities}>
+            <Pressable>
+              <Image source={images.face_scan} style={styles.img} />
+            </Pressable>
+            <Pressable>
+              <Image source={images.fingerprint} style={styles.img} />
+            </Pressable>
+          </View>
+          <AntDesign name="rightcircle" color={colors.browse} size={30} />
         </View>
       </View>
     </View>
@@ -56,5 +71,21 @@ const styles = StyleSheet.create({
     flex: 1,
     width: sizes.width * 0.85,
     alignSelf: 'center',
+  },
+  txt: {
+    color: colors.colortext,
+    fontFamily: fonts.regular,
+    fontSize: sizes.width * 0.04,
+  },
+  viewUtilities: {
+    alignSelf: 'center',
+    width: sizes.width * 0.4,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: 60,
+  },
+  img: {
+    height: sizes.width * 0.1,
+    width: sizes.width * 0.1,
   },
 });

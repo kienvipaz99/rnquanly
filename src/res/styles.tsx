@@ -16,5 +16,8 @@ export const StyleApp = StyleSheet.create({
   viewfogotlogin: {
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 15,
+    paddingBottom: 30,
   },
 });

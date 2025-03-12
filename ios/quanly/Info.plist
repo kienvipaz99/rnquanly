@@ -49,12 +49,11 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>GoogleSans-Bold.ttf</string>
-		<string>GoogleSans-BoldItalic.ttf</string>
-		<string>GoogleSans-Italic.ttf</string>
-		<string>GoogleSans-Medium.ttf</string>
-		<string>GoogleSans-MediumItalic.ttf</string>
-		<string>GoogleSans-Regular.ttf</string>
+		<string>FSPFBeauSansPro-BlackItalic.ttf</string>
+		<string>FSPFBeauSansPro-Bold.ttf</string>
+		<string>FSPFBeauSansPro-Italic.ttf</string>
+		<string>FSPFBeauSansPro-Light.ttf</string>
+		<string>FSPFBeauSansPro-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

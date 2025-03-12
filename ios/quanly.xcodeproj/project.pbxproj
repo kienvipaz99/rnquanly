@@ -11,12 +11,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		44E43F99409E4C3AB8D6D93E /* GoogleSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D314038C3D64A91A0745373 /* GoogleSans-Bold.ttf */; };
-		412F6EA1C34C4DBA96F971BA /* GoogleSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 349626E35D9848AAB2AD51E9 /* GoogleSans-BoldItalic.ttf */; };
-		7D476FD27F6B455A9904D8D6 /* GoogleSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70FB06AADF8C400FB53E9DC9 /* GoogleSans-Italic.ttf */; };
-		AEA599047B5440D6B274FC99 /* GoogleSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D373B0E0CAE34024AE17C937 /* GoogleSans-Medium.ttf */; };
-		D6986F6D0A9643978CF7E758 /* GoogleSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EE76845B6E44BCB8AFF6224 /* GoogleSans-MediumItalic.ttf */; };
-		290334AFD4874BC9B4BCA1F8 /* GoogleSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0297FE85532F4A50B46EBBB1 /* GoogleSans-Regular.ttf */; };
+		A3AC5E6E4DE1451BA7514148 /* FSPFBeauSansPro-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7977B9BC095A4AF8BA1B61EE /* FSPFBeauSansPro-BlackItalic.ttf */; };
+		5D9F6BF21CA74F3685734684 /* FSPFBeauSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A08C7576EC2F474A8ABE80AB /* FSPFBeauSansPro-Bold.ttf */; };
+		5AE59CE32360401EBF58E6F7 /* FSPFBeauSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9150916D8DA54B2FB72B6B6F /* FSPFBeauSansPro-Italic.ttf */; };
+		87887D26057146ED88BEA76B /* FSPFBeauSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2703FFEF15AD48BF8D0E8329 /* FSPFBeauSansPro-Light.ttf */; };
+		9C622568BC3C416288E24AE7 /* FSPFBeauSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65BF3327CA164CE2AA31D86D /* FSPFBeauSansPro-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +40,11 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = quanly/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = quanly/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		2D314038C3D64A91A0745373 /* GoogleSans-Bold.ttf */ = {isa = PBXFileReference; name = "GoogleSans-Bold.ttf"; path = "../src/assets/fonts/GoogleSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		349626E35D9848AAB2AD51E9 /* GoogleSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "GoogleSans-BoldItalic.ttf"; path = "../src/assets/fonts/GoogleSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		70FB06AADF8C400FB53E9DC9 /* GoogleSans-Italic.ttf */ = {isa = PBXFileReference; name = "GoogleSans-Italic.ttf"; path = "../src/assets/fonts/GoogleSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D373B0E0CAE34024AE17C937 /* GoogleSans-Medium.ttf */ = {isa = PBXFileReference; name = "GoogleSans-Medium.ttf"; path = "../src/assets/fonts/GoogleSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0EE76845B6E44BCB8AFF6224 /* GoogleSans-MediumItalic.ttf */ = {isa = PBXFileReference; name = "GoogleSans-MediumItalic.ttf"; path = "../src/assets/fonts/GoogleSans-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0297FE85532F4A50B46EBBB1 /* GoogleSans-Regular.ttf */ = {isa = PBXFileReference; name = "GoogleSans-Regular.ttf"; path = "../src/assets/fonts/GoogleSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7977B9BC095A4AF8BA1B61EE /* FSPFBeauSansPro-BlackItalic.ttf */ = {isa = PBXFileReference; name = "FSPFBeauSansPro-BlackItalic.ttf"; path = "../src/assets/fonts/FSPFBeauSansPro-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A08C7576EC2F474A8ABE80AB /* FSPFBeauSansPro-Bold.ttf */ = {isa = PBXFileReference; name = "FSPFBeauSansPro-Bold.ttf"; path = "../src/assets/fonts/FSPFBeauSansPro-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9150916D8DA54B2FB72B6B6F /* FSPFBeauSansPro-Italic.ttf */ = {isa = PBXFileReference; name = "FSPFBeauSansPro-Italic.ttf"; path = "../src/assets/fonts/FSPFBeauSansPro-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2703FFEF15AD48BF8D0E8329 /* FSPFBeauSansPro-Light.ttf */ = {isa = PBXFileReference; name = "FSPFBeauSansPro-Light.ttf"; path = "../src/assets/fonts/FSPFBeauSansPro-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		65BF3327CA164CE2AA31D86D /* FSPFBeauSansPro-Regular.ttf */ = {isa = PBXFileReference; name = "FSPFBeauSansPro-Regular.ttf"; path = "../src/assets/fonts/FSPFBeauSansPro-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,12 +130,11 @@
 		98E0456E537B4AD780160AAC /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				2D314038C3D64A91A0745373 /* GoogleSans-Bold.ttf */,
-				349626E35D9848AAB2AD51E9 /* GoogleSans-BoldItalic.ttf */,
-				70FB06AADF8C400FB53E9DC9 /* GoogleSans-Italic.ttf */,
-				D373B0E0CAE34024AE17C937 /* GoogleSans-Medium.ttf */,
-				0EE76845B6E44BCB8AFF6224 /* GoogleSans-MediumItalic.ttf */,
-				0297FE85532F4A50B46EBBB1 /* GoogleSans-Regular.ttf */,
+				7977B9BC095A4AF8BA1B61EE /* FSPFBeauSansPro-BlackItalic.ttf */,
+				A08C7576EC2F474A8ABE80AB /* FSPFBeauSansPro-Bold.ttf */,
+				9150916D8DA54B2FB72B6B6F /* FSPFBeauSansPro-Italic.ttf */,
+				2703FFEF15AD48BF8D0E8329 /* FSPFBeauSansPro-Light.ttf */,
+				65BF3327CA164CE2AA31D86D /* FSPFBeauSansPro-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -212,12 +209,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				44E43F99409E4C3AB8D6D93E /* GoogleSans-Bold.ttf in Resources */,
-				412F6EA1C34C4DBA96F971BA /* GoogleSans-BoldItalic.ttf in Resources */,
-				7D476FD27F6B455A9904D8D6 /* GoogleSans-Italic.ttf in Resources */,
-				AEA599047B5440D6B274FC99 /* GoogleSans-Medium.ttf in Resources */,
-				D6986F6D0A9643978CF7E758 /* GoogleSans-MediumItalic.ttf in Resources */,
-				290334AFD4874BC9B4BCA1F8 /* GoogleSans-Regular.ttf in Resources */,
+				A3AC5E6E4DE1451BA7514148 /* FSPFBeauSansPro-BlackItalic.ttf in Resources */,
+				5D9F6BF21CA74F3685734684 /* FSPFBeauSansPro-Bold.ttf in Resources */,
+				5AE59CE32360401EBF58E6F7 /* FSPFBeauSansPro-Italic.ttf in Resources */,
+				87887D26057146ED88BEA76B /* FSPFBeauSansPro-Light.ttf in Resources */,
+				9C622568BC3C416288E24AE7 /* FSPFBeauSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
