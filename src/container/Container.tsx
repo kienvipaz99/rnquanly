@@ -9,7 +9,7 @@ const Container = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName={'ButtomTab'}
+        initialRouteName={'Login'}
         screenOptions={{
           headerShown: false,
         }}>

@@ -7,7 +7,7 @@ import {PropsButomCustom} from '../../types/type-buttom-custom';
 
 export default function ButtomCusTom(props: PropsButomCustom) {
   return (
-    <TouchableOpacity style={styles.btn}>
+    <TouchableOpacity style={styles.btn} {...props}>
       <Text style={styles.txt}>{props.txtButton}</Text>
     </TouchableOpacity>
   );

@@ -8,8 +8,13 @@ import {fonts} from '../../res/fonts';
 import images from '../../res/images';
 import sizes from '../../res/sizes';
 import {StyleApp} from '../../res/styles';
+import {NavigationProp} from '@react-navigation/native';
 
-export default function Login() {
+export default function Login({
+  navigation,
+}: {
+  navigation: NavigationProp<Record<string, any>>;
+}) {
   const [userName, setUserName] = useState('');
   const [passWord, setPassWord] = useState('');
 
@@ -38,7 +43,12 @@ export default function Login() {
             <Text style={styles.txt}>Đổi mật khẩu</Text>
             <Text style={styles.txt}>Quên mật khẩu</Text>
           </View>
-          <ButtomCusTom txtButton="Đăng nhập" />
+          <ButtomCusTom
+            txtButton="Đăng nhập"
+            onPress={() => {
+              navigation.navigate('ButtomTab');
+            }}
+          />
 
           <View style={styles.viewUtilities}>
             <Pressable>

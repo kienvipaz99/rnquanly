@@ -1,4 +1,7 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  createBottomTabNavigator,
+  TransitionSpecs,
+} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Thư viện icon (có thể thay bằng thư viện khác)
@@ -75,15 +78,15 @@ export default function ButtomTab() {
         tabBarActiveTintColor: 'red',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          backgroundColor: '#e0e0e0',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          height: 60,
-          position: 'absolute',
-          bottom: 0,
+          backgroundColor: '#C7C7C7',
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+          height: 70,
           left: 0,
           right: 0,
         },
+        transitionSpec: TransitionSpecs.FadeSpec,
+
         tabBarItemStyle: {
           paddingVertical: 5,
         },
@@ -91,7 +94,17 @@ export default function ButtomTab() {
           fontSize: 12,
         },
       })}>
-      <Tab.Screen name="Trang chủ" component={HomeScreen} />
+      <Tab.Screen
+        name="Trang chủ"
+        component={HomeScreen}
+        options={{
+          tabBarBadge: 3,
+          tabBarBadgeStyle: {
+            color: 'black',
+            backgroundColor: 'yellow',
+          },
+        }}
+      />
       <Tab.Screen name="Lịch" component={CalendarScreen} />
       <Tab.Screen name="Hồ sơ" component={ProfileScreen} />
       <Tab.Screen name="Thông báo" component={NotificationScreen} />
