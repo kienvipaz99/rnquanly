@@ -1,21 +1,15 @@
 import * as shape from 'd3-shape';
-import React, {useMemo, useRef} from 'react';
-import {Animated, SafeAreaView, StyleSheet, View} from 'react-native';
+import React, {useMemo} from 'react';
+import {Animated, StyleSheet, Text, TextStyle, View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
-import images from '../../res/images';
+
 import sizes from '../../res/sizes';
+import {useTabbarStore} from '../../zustand/useTabbarStore';
 import StaticTabbar from './StaticTabbar';
+
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 const height = sizes.height * 0.08;
-const tabs = [
-  {name: 'Trang chủ', nameicon: images.home},
-  {name: 'Danh bạ', nameicon: images.phonebook},
-  {name: 'Danh mục', nameicon: images.grid},
-  {name: 'Công việc', nameicon: images.worker},
-  {name: 'Thông báo', nameicon: images.notifications},
-];
-const tabWidth = sizes.width / tabs.length;
-const backgroundColor = '#C7C7C7';
+const tabWidth = sizes.width / 5;
 const getPath = (): string => {
   const left = shape
     .line<[number, number]>()
@@ -31,12 +25,12 @@ const getPath = (): string => {
     .y(d => d[1])
     .curve(shape.curveBasis)([
     [sizes.width, 0],
-    [sizes.width + 10, 0],
-    [sizes.width + 20, 15],
-    [sizes.width + 30, height / 2.5],
-    [sizes.width + tabWidth - 30, height / 2.5], // Đỉnh cong khác
-    [sizes.width + tabWidth - 20, 15],
-    [sizes.width + tabWidth - 10, 0],
+    [sizes.width + 8, 0],
+    [sizes.width + 10, 18],
+    [sizes.width + 25, height - 19],
+    [sizes.width + tabWidth - 25, height - 19],
+    [sizes.width + tabWidth - 10, 18],
+    [sizes.width + tabWidth - 8, 0],
     [sizes.width + tabWidth, 0],
   ]);
 
@@ -54,33 +48,99 @@ const getPath = (): string => {
   return `${left} ${tab} ${right}`;
 };
 
-export default function Tabbar() {
-  const value = useRef(new Animated.Value(0)).current;
+export interface TabsType {
+  name: string;
+  title?: string;
+  activeIcon: React.ReactElement;
+  inactiveIcon: React.ReactElement;
+}
+
+interface Props {
+  tabs: Array<TabsType>;
+  tabBarContainerBackground?: string;
+  containerWidth?: number;
+  activeTabBackground?: string;
+  labelStyle?: TextStyle;
+  onTabChange?: (tab: TabsType) => void;
+  defaultActiveTabIndex?: number;
+  transitionSpeed?: number;
+}
+
+const Tabbar: React.FC<Props> = ({
+  tabs,
+  tabBarContainerBackground,
+  containerWidth,
+  activeTabBackground,
+  labelStyle,
+  onTabChange,
+  defaultActiveTabIndex,
+  transitionSpeed,
+}) => {
+  const {translateX} = useTabbarStore();
   const d = useMemo(() => getPath(), []);
-  const translateX = value.interpolate({
-    inputRange: [0, sizes.width],
-    outputRange: [-sizes.width, 0],
+  let CustomWidth = containerWidth ? containerWidth : sizes.width;
+  const interpolatedTranslateX = translateX.interpolate({
+    inputRange: [0, CustomWidth],
+    outputRange: [-CustomWidth, 0],
   });
-  return (
-    <>
-      <View style={{height, width: sizes.width}}>
+
+  if (tabs.length > 0) {
+    return (
+      <>
         <AnimatedSvg
           width={sizes.width * 2}
           height={height}
-          style={{transform: [{translateX}]}}>
-          <Path fill={backgroundColor} d={d} />
+          style={[
+            styles.tabbarStyle,
+            {transform: [{translateX: interpolatedTranslateX}]},
+          ]}>
+          <Path fill={tabBarContainerBackground} d={d} />
         </AnimatedSvg>
-        <View style={StyleSheet.absoluteFill}>
-          <StaticTabbar tabs={tabs} value={value} />
-        </View>
-      </View>
-      <SafeAreaView style={styles.container} />
-    </>
-  );
-}
 
+        <View style={styles.view}>
+          <StaticTabbar
+            tabs={tabs}
+            value={translateX}
+            onTabChange={onTabChange}
+            activeTabBackground={activeTabBackground}
+            labelStyle={labelStyle}
+            defaultActiveTabIndex={defaultActiveTabIndex}
+            transitionSpeed={transitionSpeed}
+          />
+        </View>
+      </>
+    );
+  } else {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>Please add tab data</Text>
+      </View>
+    );
+  }
+};
+export default Tabbar;
 const styles = StyleSheet.create({
   container: {
-    backgroundColor,
+    width: sizes.width,
+  },
+  emptyContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  tabbarStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 9,
+  },
+  view: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    height: height,
   },
 });

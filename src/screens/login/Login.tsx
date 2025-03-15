@@ -1,3 +1,4 @@
+import {NavigationProp} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import ButtomCusTom from '../../components/buttom/ButtomCusTom';
@@ -8,7 +9,6 @@ import {fonts} from '../../res/fonts';
 import images from '../../res/images';
 import sizes from '../../res/sizes';
 import {StyleApp} from '../../res/styles';
-import {NavigationProp} from '@react-navigation/native';
 
 export default function Login({
   navigation,
@@ -46,7 +46,7 @@ export default function Login({
           <ButtomCusTom
             txtButton="Đăng nhập"
             onPress={() => {
-              navigation.navigate('ButtomTab');
+              navigation.navigate('BottomTab');
             }}
           />
 

@@ -1,11 +1,13 @@
-import {StatusBar, StyleSheet, View} from 'react-native';
-import Container from './src/container/Container';
+import {NavigationContainer} from '@react-navigation/native';
+import {StyleSheet, View} from 'react-native';
+import BottomTab from './src/container/BottomTab';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="transparent" translucent={true} />
-      <Container />
+      <NavigationContainer>
+        <BottomTab />
+      </NavigationContainer>
     </View>
   );
 }

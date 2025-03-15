@@ -1,56 +1,146 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {
   Animated,
-  Image,
-  ImageSourcePropType,
+  Dimensions,
+  I18nManager,
   StyleSheet,
+  Text,
+  TextStyle,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
-import {colors} from '../../res/colors';
 import sizes from '../../res/sizes';
-interface Tab {
-  name: string;
-  nameicon: ImageSourcePropType;
+import {useTabbarStore} from '../../zustand/useTabbarStore';
+import {TabsType} from './TabBar';
+let {width} = Dimensions.get('window');
+var prevIndex = -1;
+
+interface Props {
+  value: Animated.AnimatedValue;
+  tabs: Array<TabsType>;
+  onTabChange?: (tab: TabsType) => void;
+  labelStyle?: TextStyle;
+  activeTabBackground?: string;
+  Hvalue?: number;
+  containerWidth?: number;
+  defaultActiveTabIndex?: number;
+  transitionSpeed?: number;
 }
 
-interface StaticTabbarProps {
-  tabs: Tab[];
-  value: Animated.Value;
-}
-export default function StaticTabbar({tabs, value}: StaticTabbarProps) {
+const StaticTabbar: React.FC<Props> = ({
+  value,
+  tabs,
+  onTabChange,
+  labelStyle,
+  activeTabBackground,
+  containerWidth,
+  defaultActiveTabIndex,
+  transitionSpeed,
+}) => {
+  const transitionDuration = transitionSpeed || 0;
+  const activeTabIndex = defaultActiveTabIndex
+    ? defaultActiveTabIndex > tabs.length
+      ? 0
+      : defaultActiveTabIndex
+    : 0;
+
   const values = useRef(
-    tabs.map((_, index) => new Animated.Value(index === 0 ? 1 : 0)),
+    tabs.map(
+      (tab, index) => new Animated.Value(index === activeTabIndex ? 1 : 0),
+    ),
   ).current;
+
+  const bounceValues = useRef(tabs.map(() => new Animated.Value(0))).current;
+
+  const changeBottomTab = useTabbarStore(state => state.changeBottomTab);
+
+  const range = (start: number, end: number) => {
+    var len = end - start;
+    var a = new Array(len);
+    for (let i = 0; i < len; i++) {
+      a[i] = start + i;
+    }
+    return a;
+  };
+
+  let customWidth = containerWidth ? containerWidth : width;
+
   const onPress = useCallback(
-    (index: number) => {
-      const tabWidth = sizes.width / tabs.length;
-      Animated.sequence([
-        Animated.parallel(
-          values.map(v =>
-            Animated.timing(v, {
-              toValue: 0,
-              duration: 100,
-              useNativeDriver: true,
-            }),
+    (index: number, noAnimation: boolean = false) => {
+      if (prevIndex !== index) {
+        const tabWidth = customWidth / tabs.length;
+        let rangeNumber = range(0, tabs.length).reverse();
+
+        bounceValues.forEach((bv, idx) => {
+          if (idx !== index) {
+            bv.setValue(0);
+          }
+        });
+
+        Animated.sequence([
+          Animated.parallel(
+            values.map((v: Animated.AnimatedValue | Animated.AnimatedValueXY) =>
+              Animated.timing(v, {
+                toValue: 0,
+                useNativeDriver: true,
+                duration: noAnimation ? 0 : 50,
+              }),
+            ),
           ),
-        ),
-        Animated.parallel([
-          Animated.spring(value, {
-            toValue: tabWidth * index,
+          Animated.timing(value, {
+            toValue: I18nManager.isRTL
+              ? customWidth + tabWidth * rangeNumber[index]
+              : tabWidth * index,
             useNativeDriver: true,
+            duration: noAnimation ? 0 : transitionDuration,
           }),
-          Animated.spring(values[index], {
+          Animated.timing(values[index], {
             toValue: 1,
             useNativeDriver: true,
+            duration: 0,
           }),
-        ]),
-      ]).start();
+          Animated.loop(
+            Animated.sequence([
+              Animated.timing(bounceValues[index], {
+                toValue: 1,
+                useNativeDriver: true,
+                duration: 150,
+              }),
+              Animated.timing(bounceValues[index], {
+                toValue: 0,
+                useNativeDriver: true,
+                duration: 150,
+              }),
+            ]),
+            {iterations: 1},
+          ),
+        ]).start();
+        prevIndex = index;
+      }
     },
-    [tabs.length, value, values],
+    [customWidth, tabs.length, bounceValues, values, value, transitionDuration],
   );
-  const [selectTab, setSelectTab] = useState('Trang chủ');
+
+  useEffect(() => {
+    if (changeBottomTab) {
+      onPress(changeBottomTab?.index, false);
+    }
+  }, [changeBottomTab, onPress]);
+
+  useEffect(() => {
+    if (changeBottomTab) {
+      onPress(changeBottomTab?.index, false);
+    }
+  }, [changeBottomTab, onPress]);
+
+  let mergeLabelStyle = {...styles.labelStyle, ...labelStyle};
+  let newActiveIcon = [
+    styles.activeIcon,
+    {backgroundColor: activeTabBackground ? activeTabBackground : '#fff'},
+  ];
+
   return (
     <View style={styles.container}>
       {tabs.map((tab, key) => {
@@ -71,41 +161,38 @@ export default function StaticTabbar({tabs, value}: StaticTabbarProps) {
           outputRange: [0, 1],
           extrapolate: 'clamp',
         });
+        console.log(tabs);
 
         return (
           <React.Fragment key={key}>
             <TouchableWithoutFeedback
               onPress={() => {
                 onPress(key);
-                setSelectTab(tab.name);
+                onTabChange && onTabChange(tab);
               }}>
-              <Animated.View style={[styles.tab, {opacity}]}>
-                <Image source={tab.nameicon} style={styles.img} />
+              <Animated.View style={[styles.tab, {opacity: opacity}]}>
+                {tab.inactiveIcon ? (
+                  tab.inactiveIcon
+                ) : (
+                  <Text>⚠️ Missing Icon</Text>
+                )}
+                <Text style={mergeLabelStyle}>{'123'} </Text>
               </Animated.View>
             </TouchableWithoutFeedback>
             <Animated.View
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                position: 'absolute',
-                top: -sizes.height * 0.06,
-                left: tabWidth * key,
-                width: tabWidth,
-                height: sizes.height * 0.1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                opacity: opacity1,
-                transform: [{translateY}],
-              }}>
+              style={[
+                {
+                  transform: [{translateY}],
+                  opacity: opacity1,
+                  left: tabWidth * key,
+                  width: tabWidth,
+                },
+                styles.view1,
+              ]}>
               <LinearGradient
-                style={styles.activeIcon}
+                style={[newActiveIcon, styles.view]}
                 colors={['#FF030A', '#AC125B']}>
-                <Image
-                  source={tab.nameicon}
-                  tintColor={
-                    selectTab === tab.name ? colors.white : colors.colortext
-                  }
-                  style={styles.img}
-                />
+                {tab.activeIcon}
               </LinearGradient>
             </Animated.View>
           </React.Fragment>
@@ -113,33 +200,51 @@ export default function StaticTabbar({tabs, value}: StaticTabbarProps) {
       })}
     </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    flex: 1,
-  },
-  bnt: {
-    height: sizes.height * 0.08,
-    width: sizes.width / 5,
-    alignItems: 'center',
   },
   tab: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: sizes.height * 0.08,
+    flex: 1,
   },
-  activeIcon: {
-    backgroundColor: 'red',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+  view1: {
+    position: 'absolute',
+    top: sizes.height * 0.01,
+
+    height: sizes.height * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  img: {
-    width: sizes.width * 0.04,
-    height: sizes.width * 0.04,
+  activeIcon: {
+    width: sizes.width * 0.13,
+    height: sizes.width * 0.13,
+    borderRadius: 50,
+    marginBottom: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  labelStyle: {
+    fontSize: 11,
+    fontWeight: '600',
+    // marginTop: 3,
+    color: '#000',
+  },
+  view: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 0,
+    zIndex: 1,
   },
 });
+
+export default StaticTabbar;
